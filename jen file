@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('create directory') {
+            steps {
+                script {
+                    dir('folder1') {
+                        // Code to create files or perform other operations in the 'folder1' directory
+                    }
+                }
+            }
+        }
+        stage('create file') {
+            steps {
+                script {
+                    writeFile file: "$workspace/file.txt", text: '!RAM RAM BHAI SAREYA NE!'
+                }
+            }
+        }
+        stage('show') {
+            steps {
+                script {
+                    echo "Contents of file.txt:"
+                    sh "cat $workspace/file.txt"
+                }
+            }
+        }
+    }
+}
